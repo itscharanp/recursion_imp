@@ -1,0 +1,45 @@
+package practice3;
+import java.util.*;
+public class Practice3 
+{ 
+    
+    public static String[] permstring(String input)
+    {
+        if(input.length() == 0)
+        {
+            String output[] = {""};
+            return output;
+        }
+        
+        String[] smalloutput = permstring(input.substring(1));
+        String output[] = new String[input.length()*smalloutput.length];
+        
+        int k = 0;
+        for(int i=0;i<smalloutput.length;i++)
+        {
+            String currstring = smalloutput[i];
+            for(int j=0;j<=currstring.length();j++)
+            {
+                output[k] =  currstring.substring(0,j) + input.charAt(0) + currstring.substring(j);
+                k++;
+            }
+        }
+        
+      return output;   
+    }
+    public static void main(String[] args) 
+    {
+      Scanner in = new Scanner(System.in);
+      String permutestring = in.next();
+      
+      String arrtobeprinted[] = permstring(permutestring);
+      
+      for(int i=0;i<arrtobeprinted.length;i++)
+      {
+         System.out.println(arrtobeprinted[i]);
+      }
+      
+      
+    }
+}
+
