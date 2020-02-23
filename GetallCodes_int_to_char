@@ -1,0 +1,61 @@
+package practice3;
+import java.util.*;
+public class Practice3 
+{ 
+    
+    public static char getChar(int  n)
+    {
+        return (char)(96+n);
+    }
+    
+
+    public static String[] allcodes(String input)
+    {
+       if(input.length() == 0)
+       {
+           String output[] = {""};
+           return output;
+       }
+       int fd = (input.charAt(0) - '0');
+       String so[] = allcodes(input.substring(1));
+       String so2[] = new String[0];
+       int ftd = 0;
+       if(input.length() >= 2)
+       {
+           ftd = (input.charAt(0) - '0') * 10 + (input.charAt(0) -  '0');
+           if(ftd > 10 && ftd <= 26)
+           {
+               so2 = allcodes(input.substring(2));
+           }
+       }
+        String output[] = new String[so.length + so2.length];
+        int index = 0;
+        for(String s : so)
+        {
+            char fdc = getChar(fd);
+            output[index++] = fdc +   s;
+            
+        }
+        for(String s: so2)
+        {
+            char fdc = getChar(ftd);
+            output[index++] = fdc +   s;
+        }
+            
+        
+        
+        return output;
+    }
+    public static void main(String[] args) 
+    {
+       Scanner in = new Scanner(System.in);
+       String s = in.next();
+       String ans[] = allcodes(s);
+       for(int i=0;i<ans.length;i++)
+       {
+           System.out.print(ans[i]+" ");
+       }
+    }
+       
+       
+}
