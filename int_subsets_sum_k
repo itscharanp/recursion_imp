@@ -1,0 +1,73 @@
+package practice3;
+import java.util.*;
+public class Practice3 
+{ 
+    public static int[][] subsets(int[] input , int si , int k)
+    {
+         if(si == input.length)
+         {
+             if(k == 0)
+             {
+                 int output[][] = new int[1][0];
+                 return output;
+             }
+             else
+             {
+                  int output[][] = new int[0][0];
+                  return output;
+             } 
+         }
+         
+         
+         int[][] so = subsets( input , si+1 , k);
+         int[][] so2 =  subsets(input ,si+1 , k - input[si]);
+         int[][] output = new int[so.length + so2.length][];
+         int index = 0;
+         
+         for(int i=0;i<so.length;i++)
+         {
+             output[index++] = so[i];
+         }
+         for(int i=0;i<so2.length;i++)
+         {
+             output[index] = new int[so2[i].length+1];
+             output[index][0] = input[si];
+             for(int j=0;j<so2[i].length;j++)
+             {
+                 output[index][j+1] = so2[i][j];
+             }
+             index++;
+         }
+        
+        
+        return output;
+        
+        
+        
+    }
+    public static void main(String[] args) 
+    {
+       Scanner in = new Scanner(System.in);
+       
+       int n = in.nextInt();
+       int input[] = new int[n];
+       for(int i=0;i<n;i++)
+       {
+           input[i] = in.nextInt();
+       }
+       
+       System.out.println("enter the value of k");
+       int k = in.nextInt();
+       int ans[][] = subsets(input,0,k);
+       for(int i=0;i<ans.length;i++)
+       {
+           for(int j=0;j<ans[i].length;j++)
+           {
+               
+               System.out.print(ans[i][j]+" ");
+           }
+           System.out.println();
+       }
+       
+    }
+}
