@@ -1,0 +1,66 @@
+package practice3;
+import java.util.*;
+public class Practice3 
+{ 
+    public static char[][] subsets(char[] input , int si)
+    {
+        if(si == input.length)
+        {
+             char output[][] = new char[1][0];
+             return output;
+        }
+        
+        char so[][] =subsets(input,si+1);
+        char op[][] = new char[2*so.length][];
+        
+        int k=0;
+        for(int i=0;i<so.length;i++)
+        {
+            op[k] = new char[so[i].length]; 
+            for(int j=0;j<so[i].length;j++)
+            {
+                op[k][j] = so[i][j];
+            }
+            k++;
+        }
+        
+        for(int i=0;i<so.length;i++)
+        {
+            op[k] = new char[so[i].length+1]; 
+            op[k][0] = input[si];
+            for(int j=1;j<=so[i].length;j++)
+            {
+                op[k][j] = so[i][j-1];
+            }
+            k++;
+        }
+        
+        
+      return op;  
+        
+    }
+   
+    public static void main(String[] args) 
+    {
+       Scanner in = new Scanner(System.in);
+       
+       String s = in.next();
+       char input[] = s.toCharArray();
+      
+       
+       
+       char ans[][] = subsets(input,0);
+       
+       
+       for(int i=0;i<ans.length;i++)
+       {
+           for(int j=0;j<ans[i].length;j++)
+           {
+               
+               System.out.print(ans[i][j]+" ");
+           }
+           System.out.println();
+       }
+       
+    }
+}
