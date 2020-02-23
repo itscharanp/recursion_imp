@@ -22,7 +22,7 @@ public class Practice3
        int ftd = 0;
        if(input.length() >= 2)
        {
-           ftd = (input.charAt(0) - '0') * 10 + (input.charAt(0) -  '0');
+           ftd = (input.charAt(0) - '0') * 10 + (input.charAt(1) -  '0');
            if(ftd > 10 && ftd <= 26)
            {
                so2 = allcodes(input.substring(2));
